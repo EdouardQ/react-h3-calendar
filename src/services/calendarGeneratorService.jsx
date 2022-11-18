@@ -1,4 +1,4 @@
-export const CalendarService = (year, month) => {
+export const CalendarGeneratorService = (year, month) => {
     const date = new Date(year, month, 1);
 
     const dates = [];
