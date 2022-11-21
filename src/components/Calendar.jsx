@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import {CalendarContext} from "../context/calendarContext";
+import {CalendarHeader} from "./CalendarHeader";
 
 export const Calendar = (props) => {
     const calendar = useContext(CalendarContext);
@@ -45,20 +46,23 @@ export const Calendar = (props) => {
     const data = generateTable();
 
     return (
-        <table className="table">
-            <thead>
-                <tr>
-                    <th>Mon</th>
-                    <th>Tue</th>
-                    <th>Wed</th>
-                    <th>Thu</th>
-                    <th>Fri</th>
-                    <th>Sat</th>
-                    <th>Sun</th>
-                </tr>
-            </thead>
-            <tbody dangerouslySetInnerHTML={{__html: data}}>
-            </tbody>
-        </table>
+        <div>
+           <CalendarHeader></CalendarHeader>
+            <table className="table w-50 m-auto">
+                <thead>
+                    <tr>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                        <th>Sun</th>
+                    </tr>
+                </thead>
+                <tbody dangerouslySetInnerHTML={{__html: data}}>
+                </tbody>
+            </table>
+        </div>
     );
 }
