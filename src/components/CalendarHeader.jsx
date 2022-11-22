@@ -1,15 +1,16 @@
-import {useContext} from "react";
-import {CalendarHeaderContext} from "../context/calendarHeaderContext";
+import {CalendarForm} from "./CalendarForm";
 
-
-export const CalendarHeader = (props) => {
-    const {calendarHeader} = useContext(CalendarHeaderContext);
+export const CalendarHeader = () => {
 
     return(
         <div>
-            <button className="btn btn-primary">Prev</button>
-            Var
-            <button className="btn btn-primary">Suiv</button>
+            <div>
+                <button className="btn btn-primary btn-date">Prev</button>
+                Month / Year
+                <button className="btn btn-primary btn-date">Next</button>
+            </div>
+            <br/>
+            <CalendarForm></CalendarForm>
         </div>
     );
 }

@@ -47,7 +47,9 @@ export const Calendar = (props) => {
 
     return (
         <div>
+            <br/>
            <CalendarHeader></CalendarHeader>
+            <br/><br/>
             <table className="table w-50 m-auto">
                 <thead>
                     <tr>
