@@ -5,7 +5,11 @@ import {UpdateTable} from "../services/calendarGeneratorService";
 export const Calendar = () => {
     const currentDate = new Date(Date.now());
     let data = UpdateTable(currentDate);
+
     let table;
+    let monthSelect;
+    let yearSelect;
+
 
     let dates = {
         "months": [
@@ -31,14 +35,18 @@ export const Calendar = () => {
 
     useEffect(() => {
         table = $('tbody');
-        $('#month-select').val(currentDate.getMonth());
-        $('#year-select').val(currentDate.getFullYear());
+        monthSelect = $('#month-select');
+        yearSelect = $('#year-select');
+
+        monthSelect.val(currentDate.getMonth()+1);
+        yearSelect.val(currentDate.getFullYear());
+
         table.html(data);
     });
 
     const handleChange = (event) => {
-        let month = $('#month-select').val();
-        const year = $('#year-select').val();
+        let month = monthSelect.val();
+        const year = yearSelect.val();
 
         if (month.length < 2) {
             month = '0'+month;
@@ -48,11 +56,35 @@ export const Calendar = () => {
         table.html(data);
     };
 
+    const handleClick = (event) => {
+        if (event.target.id === "btn-prev") {
+            if (monthSelect.val() === '1') {
+                if (yearSelect.val() !== '1970') {
+                    monthSelect.val(12);
+                    yearSelect.val(yearSelect.val()-1);
+                }
+            } else {
+                monthSelect.val(monthSelect.val()-1);
+            }
+        } else if (event.target.id === "btn-next") {
+            if (monthSelect.val() === '12') {
+                if (yearSelect.val() !== '2050') {
+                    monthSelect.val(1);
+                    yearSelect.val(parseInt(yearSelect.val())+1);
+                }
+            } else {
+                monthSelect.val(parseInt(monthSelect.val())+1);
+            }
+        }
+
+        handleChange();
+    };
+
     return(
         <div>
             <br/>
            <div>
-               <button className="btn btn-primary btn-date">Prev</button>
+               <button id="btn-prev" className="btn btn-primary btn-date" onClick={handleClick}>Prev</button>
                <div className="w-25 d-inline-block">
                    <form className="w-50 m-auto flex">
                        <select id="month-select" className="form-select" onChange={handleChange}>
@@ -63,7 +95,7 @@ export const Calendar = () => {
                        </select>
                    </form>
                </div>
-               <button className="btn btn-primary btn-date">Next</button>
+               <button id="btn-next" className="btn btn-primary btn-date" onClick={handleClick}>Next</button>
            </div>
             <br/><br/>
             <table className="table w-50 m-auto">

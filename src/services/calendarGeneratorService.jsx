@@ -36,6 +36,10 @@ export const UpdateTable = (date) => {
         dates[i].push('');
     }
 
+    for (let i = 0; i < 7; i++) {
+        dates[i].push('');
+    }
+
     let data = '';
 
     for (let i = 0; i < 5; i++) {
