@@ -10,7 +10,6 @@ export const Calendar = () => {
     let monthSelect;
     let yearSelect;
 
-
     let dates = {
         "months": [
             "january",
@@ -44,7 +43,7 @@ export const Calendar = () => {
         table.html(data);
     });
 
-    const handleChange = (event) => {
+    const handleChange = () => {
         let month = monthSelect.val();
         const year = yearSelect.val();
 
