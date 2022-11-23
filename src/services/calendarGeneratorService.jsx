@@ -9,7 +9,7 @@ export const CalendarGeneratorService = (year, month) => {
     }
 
     return dates;
-}
+};
 
 export const UpdateTable = (date) => {
     let dates = {
@@ -22,7 +22,7 @@ export const UpdateTable = (date) => {
         6: []
     };
 
-    const calendarData = CalendarGeneratorService(date.getFullYear(), date.getMonth())
+    const calendarData = CalendarGeneratorService(date.getFullYear(), date.getMonth());
 
     for (let i = 0; i < calendarData[0].getUTCDay(); i++) {
         dates[i].push('');
