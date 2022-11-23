@@ -1,16 +1,14 @@
 import {CalendarForm} from "./CalendarForm";
 
-export const CalendarHeader = () => {
+export const CalendarHeader = (props) => {
 
     return(
         <div>
-            <div>
+            <div className="">
                 <button className="btn btn-primary btn-date">Prev</button>
-                Month / Year
+                <CalendarForm currentDate={props.currentDate}></CalendarForm>
                 <button className="btn btn-primary btn-date">Next</button>
             </div>
-            <br/>
-            <CalendarForm></CalendarForm>
         </div>
     );
 }

@@ -1,54 +1,22 @@
-import { useContext } from "react";
-import {CalendarContext} from "../context/calendarContext";
 import {CalendarHeader} from "./CalendarHeader";
+import {UpdateTable} from "../services/calendarGeneratorService";
+import {useEffect} from "react";
+import $ from "jquery";
 
-export const Calendar = (props) => {
-    const calendar = useContext(CalendarContext);
+export const Calendar = () => {
+    const currentDate = new Date(Date.now());
+    let data = UpdateTable(currentDate);
 
-    let generateTable = () => {
-        let dates = {
-            0: [],
-            1: [],
-            2: [],
-            3: [],
-            4: [],
-            5: [],
-            6: []
-        };
+    useEffect(() => {
+        $('#month-select').val(currentDate.getMonth());
+        $('#year-select').val(currentDate.getFullYear());
+    });
 
-        const calendarData = calendar.calendar;
-
-        for (let i = 0; i < calendarData[0].getUTCDay(); i++) {
-            dates[i].push('');
-        }
-
-        calendarData.forEach((date) => {
-            dates[date.getUTCDay()].push(date.getDate());
-        })
-
-        for (let i = calendarData[calendarData.length-1].getUTCDay()+1; i < 7; i++) {
-            dates[i].push('');
-        }
-
-        let data = '';
-
-        for (let i = 0; i < 5; i++) {
-            data += '<tr>';
-            for (let j = 0; j < 7; j++) {
-                data += `<td>${dates[j][i]}</td>`
-            }
-            data += '</tr>';
-        }
-
-        return data;
-    };
-
-    const data = generateTable();
 
     return (
         <div>
             <br/>
-           <CalendarHeader></CalendarHeader>
+           <CalendarHeader currentDate={currentDate}></CalendarHeader>
             <br/><br/>
             <table className="table w-50 m-auto">
                 <thead>

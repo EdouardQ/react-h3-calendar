@@ -4,8 +4,7 @@ import {CalendarGeneratorService} from "../services/calendarGeneratorService";
 export const CalendarContext = createContext();
 
 export const CalendarProvider = (props) => {
-    const now = new Date(Date.now());
-    const [calendar, setCalendar] = useState(CalendarGeneratorService(now.getFullYear(), now.getMonth()));
+    const [calendar, setCalendar] = useState([]);
 
     return (
         <CalendarContext.Provider value={{ calendar: calendar, setCalendar }}>
