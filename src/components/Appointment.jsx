@@ -1,8 +1,15 @@
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {AppointmentContext} from "../context/appointmentContext";
 
 export const Appointment = (props) => {
-    const { appointment } = useContext(AppointmentContext);
+    let { appointment } = useContext(AppointmentContext);
+
+    useEffect(() => {
+        localStorage.clear();
+
+        localStorage.setItem(appointment[0].title, JSON.stringify(appointment[0]));
+        // console.log(JSON.parse(localStorage.getItem(appointment[0].title)));
+    });
 
     return (
         <tbody>
