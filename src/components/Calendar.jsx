@@ -41,6 +41,8 @@ export const Calendar = () => {
         yearSelect.val(currentDate.getFullYear());
 
         table.html(data);
+
+        handleCurrentClick(yearSelect.val(), monthSelect.val());
     });
 
     const handleChange = () => {
@@ -53,6 +55,8 @@ export const Calendar = () => {
 
         data = UpdateTable(new Date(`${year}-${month}-01`));
         table.html(data);
+
+        handleCurrentClick(year, month);
     };
 
     const handleClick = (event) => {
@@ -77,6 +81,16 @@ export const Calendar = () => {
         }
 
         handleChange();
+    };
+
+    const handleCurrentClick = (year, month) => {
+        if (year == currentDate.getFullYear() && month == currentDate.getMonth()+1) {
+
+            $(`#${year}-${month}-${currentDate.getDate()}`).html(`<span id="circle">${currentDate.getDate()}</span>`);
+            let circle = $('#circle');
+            circle.css('border-radius', '50%');
+            circle.css('background', '#33cc33');
+        }
     };
 
     return(

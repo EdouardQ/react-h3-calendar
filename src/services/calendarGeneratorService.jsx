@@ -41,11 +41,15 @@ export const UpdateTable = (date) => {
     }
 
     let data = '';
+    let monthVal = date.getMonth()+1;
+    if (monthVal < 10) {
+        monthVal = '0'+monthVal;
+    }
 
     for (let i = 0; i < 5; i++) {
         data += '<tr>';
         for (let j = 0; j < 7; j++) {
-            data += `<td>${dates[j][i]}</td>`
+            data += `<td id="${date.getFullYear()}-${monthVal}-${dates[j][i]}">${dates[j][i]}</td>`
         }
         data += '</tr>';
     }
