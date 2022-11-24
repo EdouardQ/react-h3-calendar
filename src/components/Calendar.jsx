@@ -33,7 +33,7 @@ export const Calendar = () => {
     }
 
     useEffect(() => {
-        table = $('tbody');
+        table = $('#calendar-body');
         monthSelect = $('#month-select');
         yearSelect = $('#year-select');
 
@@ -123,7 +123,7 @@ export const Calendar = () => {
                     <th>Sun</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="calendar-body">
                 </tbody>
             </table>
         </div>
